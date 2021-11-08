@@ -1,3 +1,3 @@
 # FLOWB
-An app fpr flow artists
+An app for flow artists
  
