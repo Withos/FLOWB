@@ -1,2 +1,3 @@
-# wdpai-app
+# FLOWB
+An app for flow artists
  
