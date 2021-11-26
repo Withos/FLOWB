@@ -1,0 +1,135 @@
+.events_button, .videos_button, .people_button, .chats_button, .profile_button, .settings_button{
+    border: 2px solid #11121F;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 147px;
+    font-size: 150%;
+    height: 50%;
+    width: 75%;
+    transition-duration: 0.4s;
+
+}
+
+.events_button:hover,.videos_button:hover, .people_button  {
+    background-color: black;
+    color: #7e38b6;
+}
+
+.chats_button:hover {
+    background-color: black;
+    color: #8c35b6;
+}
+.profile_button:hover, .settings_button:hover {
+    background-color: black;
+    color: #a52eb8;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3vw;
+    padding: 2em 4vw;
+    overflow: auto;
+}
+
+.content>div{
+    border-radius: 20px;
+    background-color: #4a4b54;
+    margin: 0;
+    padding: 6% 6% 5%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    row-gap: 4%;
+}
+.content>div>p{
+    margin: 0;
+    color: #a6a6a6;
+}
+
+.image-cropper {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-left: 2%;
+}
+
+.image-cropper>img{
+    display: inline;
+    margin: 0 auto 0 -25%;
+    height: 100%;
+    width: auto;
+}
+.line{
+    background-color: #e6e6e6;
+    height: 1px;
+    width: 90%;
+    align-self: center;
+    margin: 4% 2% 0 0;
+}
+
+.name_age{
+    font-size: 2em;
+}
+
+.tags{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 4%;
+    row-gap: 1.5vh;
+}
+
+.tags p{
+    color: #a6a6a6;
+    margin: 0;
+    user-select: none;
+}
+
+.tags>div{
+    display: flex;
+    justify-content: center;
+    width: auto;
+    padding: 2px 14px;
+    border: 2px solid #a6a6a6;
+    border-radius: 120px;
+}
+
+.invite{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5%;
+    margin-top:auto;
+    align-self: center;
+    width: 60%;
+    border-radius: 12px;
+    background-color: #62636a;
+    height: 8.5%;
+    transition-duration: 0.4s;
+}
+
+.invite p{
+    color: #e6e6e6;
+    margin: 0;
+    user-select: none;
+    font-size: 1.2em;
+}
+.invite svg path{
+    fill: #e6e6e6;
+}
+
+.invite:hover{
+    background-color: #e6e6e6;
+}
+
+.invite:hover p{
+    color: #62636a;
+}
+.invite:hover svg path{
+    fill: #62636a;
+}
