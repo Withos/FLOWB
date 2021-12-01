@@ -1,11 +1,11 @@
-.ev_container, .people_container{
+body>div{
     background: #2d2e38;
     height: 100vh;
     width: 100vw;
     margin: 0;
     display: grid;
-    grid-template-columns: 20%;
-    grid-template-rows: 15vh;
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: 15vh 1fr;
     font-family: 'Maven Pro';
     font-style: normal;
     font-weight: normal;
