@@ -1,3 +1,6 @@
+.mobile_upper_panel{
+    display: none;
+}
 .events_button, .videos_button, .people_button, .chats_button, .profile_button, .settings_button{
     border: 2px solid #11121F;
     background-color: transparent;
@@ -33,6 +36,7 @@
     box-sizing: border-box;
     row-gap: 1.5em;
     overflow: auto;
+    height: 100%;
 }
 
 .content>div{
@@ -121,4 +125,160 @@
     font-style: normal;
     font-weight: normal;
     color: #e6e6e6;
+}
+
+@media only screen and (max-aspect-ratio: 5/6){
+
+    body>div {
+        grid-template: 16vh 1fr/ 1fr;
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+    }
+    .mobile_upper_panel{
+        display: grid;
+        grid-template: 50% 50%/15% 1fr 15%;
+        width: 100vw;
+        height: 14vh;
+        box-sizing: border-box;
+        padding: 1rem 0.75rem;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+    }
+    .mobile_upper_text{
+        grid-row: 1;
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+        height: 2.6rem;
+        width: 100%;
+    }
+    .mobile_upper_text p{
+        color: #e6e6e6;
+        font-size: 1.8rem;
+        line-height: 2rem;
+        margin: 0;
+        user-select: none;
+    }
+
+    .mobile_upper_panel form{
+        display: contents;
+    }
+
+    .mobile_search{
+        width: 100%;
+        background-color: #C4C4C4;
+        border-radius: 135px;
+        border: none;
+        height: 2rem;
+        padding-left: 5%;
+        align-self: flex-end;
+        grid-column: 2;
+        grid-row: 2;
+        box-sizing: border-box;
+    }
+
+
+    .mobile_upper_panel form button{
+        background: none;
+        border: none;
+        height: 2rem;
+        width: 2rem;
+        padding: 0;
+    }
+
+    .mobile_search_icon{
+        grid-column: 3;
+        grid-row: 2;
+        height: 2rem;
+        width: auto;
+        align-self: flex-end;
+        justify-self: flex-end;
+    }
+
+    .mobile_search_icon svg{
+        height: 2rem;
+        width: auto;
+    }
+
+    .upper_panel, .left_panel{
+        display: none;
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+        grid-row: 2;
+        padding: 1em 3vw;
+        box-sizing: border-box;
+        height: 100%;
+    }
+    .content>div{
+        padding: 0.5em 1em 0.5em 1em;
+        grid-template-columns: 4.5em 0.5em 1fr 15%;
+        height: 6rem;
+        grid-template-rows: 40% 60%;
+    }
+
+    .photo_activity, .image-cropper{
+        width: 4rem;
+        height: 4rem;
+        align-self: center;
+    }
+    .activity{
+        width: 1.1em;
+        height: 1.1em;
+        border-width: 0.2em;
+
+    }
+    .name{
+        font-size: 1.3em;
+    }
+    .last_mess{
+        align-self: center;
+        font-size: 0.9em;
+        padding: 0;
+    }
+    .time{
+        font-size: 0.9em;
+        padding: 0;
+        align-self: flex-end;
+    }
+}
+
+@media only screen and (max-aspect-ratio: 5/6) and (min-device-height: 950px){
+    *{
+        font-size: 19px;
+    }
+}
+
+@media only screen and (max-aspect-ratio: 5/6) and (max-device-height: 700px){
+    *{
+        font-size: 12px;
+    }
+
+    .content>div>div {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 5/6) and (max-device-height: 570px){
+    *{
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 5/6) and (max-device-height: 480px){
+    *{
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 5/6) and (max-device-height: 400px){
+    *{
+        font-size: 9px;
+    }
 }

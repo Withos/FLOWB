@@ -1,3 +1,6 @@
+.mobile_upper_panel{
+    display: none;
+}
 .events_button, .videos_button, .people_button, .chats_button, .profile_button, .settings_button{
     border: 2px solid #11121F;
     background-color: transparent;
@@ -40,7 +43,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 60vh;
+    height: 55vh;
     row-gap: 4%;
 }
 .content>div>p{
@@ -49,8 +52,8 @@
 }
 
 .image-cropper {
-    width: 120px;
-    height: 120px;
+    width: 7rem;
+    height: 7rem;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -59,7 +62,7 @@
 
 .image-cropper>img{
     display: inline;
-    margin: 0 auto 0 -25%;
+    margin: 0 auto 0 -20%;
     height: 100%;
     width: auto;
 }
@@ -72,7 +75,7 @@
 }
 
 .name_age{
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .tags{
@@ -87,6 +90,9 @@
     color: #a6a6a6;
     margin: 0;
     user-select: none;
+    font-family: 'Maven Pro';
+    font-style: normal;
+    font-weight: normal;
 }
 
 .tags>div{
@@ -109,7 +115,7 @@
     width: 60%;
     border-radius: 12px;
     background-color: #62636a;
-    height: 8.5%;
+    height: 2rem;
     transition-duration: 0.4s;
 }
 
@@ -118,6 +124,14 @@
     margin: 0;
     user-select: none;
     font-size: 1.2em;
+    font-family: 'Maven Pro';
+    font-style: normal;
+    font-weight: normal;
+}
+
+.invite svg{
+    height: 1.2em;
+    width: auto;
 }
 .invite svg path{
     fill: #e6e6e6;
@@ -132,4 +146,131 @@
 }
 .invite:hover svg path{
     fill: #62636a;
+}
+
+@media only screen and (max-aspect-ratio: 5/6){
+    body>div {
+        grid-template: 14vh 1fr/ 1fr;
+        height: auto;
+        width: 100vw;
+        box-sizing: border-box;
+    }
+    .mobile_upper_panel{
+        display: grid;
+        grid-template: 50% 50%/15% 1fr 15%;
+        width: 100vw;
+        height: 14vh;
+        box-sizing: border-box;
+        padding: 1rem 0.75rem;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+    }
+    .mobile_upper_text{
+        grid-row: 1;
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+        height: 2.6rem;
+        width: 100%;
+    }
+    .mobile_upper_text p{
+        color: #e6e6e6;
+        font-size: 1.8rem;
+        line-height: 2rem;
+        margin: 0;
+        user-select: none;
+    }
+
+    .mobile_upper_panel form{
+        display: contents;
+    }
+
+    .mobile_search{
+        width: 100%;
+        background-color: #C4C4C4;
+        border-radius: 135px;
+        border: none;
+        height: 2rem;
+        padding-left: 5%;
+        align-self: flex-end;
+        grid-column: 2;
+        grid-row: 2;
+        box-sizing: border-box;
+    }
+
+
+    .mobile_upper_panel form button{
+        background: none;
+        border: none;
+        height: 2rem;
+        width: 2rem;
+        padding: 0;
+        justify-self: flex-end;
+    }
+
+    .mobile_search_icon{
+        grid-column: 3;
+        grid-row: 2;
+        height: 2rem;
+        width: auto;
+        align-self: flex-end;
+        justify-self: flex-end;
+    }
+
+    .mobile_search_icon svg{
+        height: 2rem;
+        width: auto;
+    }
+
+    .upper_panel, .left_panel{
+        display: none;
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        grid-row: 2;
+        padding: 1.5rem 8vw;
+        box-sizing: border-box;
+    }
+    .content>div{
+        height: 52vh;
+    }
+}
+
+@media only screen and (max-aspect-ratio: 5/6) and (min-device-height: 950px){
+    *{
+        font-size: 19px;
+    }
+}
+
+@media only screen and (max-aspect-ratio: 5/6) and (max-device-height: 700px){
+    *{
+        font-size: 12px;
+    }
+
+    .content>div>div {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 5/6) and (max-device-height: 570px){
+    *{
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 5/6) and (max-device-height: 480px){
+    *{
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 5/6) and (max-device-height: 400px){
+    *{
+        font-size: 9px;
+    }
 }

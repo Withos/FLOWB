@@ -6,6 +6,11 @@ class DefaultController extends AppController {
 
     public function index()
     {
+        $this->render('home');
+    }
+
+    public function login()
+    {
         $this->render('login');
     }
 
@@ -22,5 +27,15 @@ class DefaultController extends AppController {
     public function chats()
     {
         $this->render('chats');
+    }
+
+    public function home()
+    {
+        $this->render('home');
+    }
+
+    public function profile()
+    {
+        $this->render('profile');
     }
 }

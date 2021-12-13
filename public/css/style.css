@@ -1,3 +1,4 @@
+
 body>div{
     background: #2d2e38;
     height: 100vh;
@@ -6,9 +7,7 @@ body>div{
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 15vh 1fr;
-    font-family: 'Maven Pro';
-    font-style: normal;
-    font-weight: normal;
+    box-sizing: border-box;
 }
 
 .left_panel{
@@ -17,7 +16,8 @@ body>div{
     padding-right: 10%;
     padding-left: 10%;
     display: grid;
-    grid-template-rows: 2vh 10vh 5vh ;
+    grid-template-rows: 17vh 1fr;
+    box-sizing: border-box;
     
 }
 
@@ -25,8 +25,7 @@ body>div{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
 }
 
 .logo_image{
@@ -34,31 +33,40 @@ body>div{
     width: 100%;
 }
 .buttons{
-    grid-column: 2;
-    grid-row: 4;
-    display: grid;
-    grid-template-columns: 5%;
-    grid-template-rows: repeat(5, 12%) 25% 12%;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    height: 83vh;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    box-sizing: border-box;
+    row-gap: 5vh;
 }
 
-.events, .videos, .people, .chats, .profile, .settings{
+.buttons>div{
     display: flex;
     grid-column: 2;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    height: 2em;
 }
 
-.events{
-    grid-row: 1;
+.buttons img{
+    height: 80%;
+    width: auto;
+    align-self: center;
 }
 
-.videos{
-    grid-row: 2;
+.buttons button{
+    height: 100%;
+    width: 80%;
+    font-size: 1.2em;
 }
 
 .settings{
-    grid-row: 7;
+    margin-top: auto;
+    justify-self: flex-end;
 }
 
 .upper_panel{
@@ -84,9 +92,13 @@ body>div{
 }
 
 .search_bar{
+    width: 35vw;
+}
+
+.search_bar>form{
     display: flex;
     justify-content: space-between;
-    width: 35vw;
+    width: 100%;
 }
 
 .filters{
@@ -130,7 +142,6 @@ body>div{
     align-self: flex-end;
     justify-self: center;
 }
-
 
 
 body{

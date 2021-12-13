@@ -1,0 +1,179 @@
+.events_button, .videos_button, .people_button, .chats_button, .profile_button, .settings_button{
+    border: 2px solid #11121F;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 147px;
+    font-size: 150%;
+    height: 50%;
+    width: 75%;
+    transition-duration: 0.4s;
+
+}
+
+.events_button, .videos_button:hover, .people_button:hover  {
+    background-color: black;
+    color: #7e38b6;
+}
+
+.chats_button:hover {
+    background-color: black;
+    color: #8c35b6;
+}
+.profile_button:hover, .settings_button:hover {
+    background-color: black;
+    color: #a52eb8;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3vw;
+    padding: 2em 4vw;
+    overflow: auto;
+}
+
+.content>div{
+    height: 60vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+}
+
+.content>div>img {
+    height: 50%;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid #4a4b54;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.content>div>div {
+    border-radius: 0 0 20px 20px;
+    background: #4a4b54;
+    margin: 0;
+    width: 100%;
+    height: 50%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 3%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5%;
+}
+
+.content>div>div>h2{
+    margin: 0;
+    color:#bdbdc1;
+    font-family: 'Maven Pro';
+    font-style: normal;
+    font-weight: normal;
+}
+
+.content>div>div>p{
+    margin: 0;
+    color:#bdbdc1;
+    font-family: 'Maven Pro';
+    font-style: normal;
+    font-weight: normal;
+
+}
+
+.interested{
+    justify-self: flex-end;
+    align-self: center;
+    background-color: #62636a;
+    width: 55%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4%;
+    border-radius: 12px;
+    margin-top:auto;
+    transition-duration: 0.4s;
+}
+
+.interested:hover{
+    background-color: #e6e6e6;
+}
+.interested_text{
+    color: #e6e6e6;
+    margin: 0;
+    user-select: none;
+}
+.interested:hover .interested_text{
+    color: #62636a;
+}
+.interested:hover svg path{
+    fill: #62636a;
+}
+
+
+
+
+@media only screen and (max-aspect-ratio: 5/6) {
+    .upper_panel {
+        display: none
+    }
+    .content{
+        display:none
+    }
+    .left_panel{
+        grid-area: 1 / 1 / 3 / 3;
+        grid-template-rows: 17vh 1fr;
+
+    }
+    .logo{
+        align-self: flex-end;
+        justify-self: center;
+        width: 100%;
+        height: auto;
+        grid-row: 1;
+        padding-bottom: 10%;
+    }
+    .buttons{
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        height: 83vh;
+        padding: 5vh 5vw 5vh;
+        box-sizing: border-box;
+        row-gap: 5.5vh;
+    }
+
+    .buttons>div{
+        height: 6vh;
+    }
+
+    .buttons button{
+        height: 100%;
+        width: 85%;
+        font-size: 2em;
+    }
+
+    .events_button{
+        border: 2px solid #11121F;
+        background-color: transparent;
+        box-sizing: border-box;
+        border-radius: 147px;
+        font-size: 150%;
+        height: 50%;
+        width: 75%;
+        transition-duration: 0.4s;
+        color: black;
+
+    }
+
+    .events_button:hover{
+        background-color: black;
+        color: #7e38b6;
+    }
+    .settings{
+        margin-top: auto;
+        justify-self: flex-end;
+    }
+}
