@@ -6,6 +6,7 @@ class User
     private $password;
     private $name;
     private $surname;
+    private $date_of_birth;
 
     public function __construct(string $email, string $password, string $name, string $surname)
     {
@@ -54,6 +55,19 @@ class User
     {
         $this->surname = $surname;
     }
+
+
+    public function getDateOfBirth()
+    {
+        return $this->date_of_birth;
+    }
+
+
+    public function setDateOfBirth($date_of_birth): void
+    {
+        $this->date_of_birth = $date_of_birth;
+    }
+
 
 
 

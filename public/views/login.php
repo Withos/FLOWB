@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/login.css">
+    <script defer src="/public/js/signup_button.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
                     <input name="email" id="mail_input" type = "text" class = "mail" placeholder="E-mail">
                     <input name="password" id="password_input" type = "password" class = "password" placeholder="Password">
                     <button type="submit" class="log_in"> Log in </button>
-                    <button class="sign_in"> Sign in </button>
+                    <button class="sign_in" onclick="location.href='register'"> Sign up </button>
                     <div class = "or">
                         <div></div>
                         <p>Or</p>
