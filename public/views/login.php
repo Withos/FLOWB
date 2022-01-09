@@ -18,9 +18,17 @@
         </div>
         
         <div class = "loginform">
-                <form>
-                    <input type = "text" class = "mail" placeholder="E-mail">
-                    <input type = "password" class = "password" placeholder="Password">
+            <div class="messages">
+                <?php if(isset ($messages)){
+                    foreach ($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
+            </div>
+                <form class="login" action="login" method="POST">
+                    <input name="email" id="mail_input" type = "text" class = "mail" placeholder="E-mail">
+                    <input name="password" id="password_input" type = "password" class = "password" placeholder="Password">
                     <button type="submit" class="log_in"> Log in </button>
                     <button class="sign_in"> Sign in </button>
                     <div class = "or">

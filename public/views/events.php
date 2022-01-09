@@ -34,7 +34,7 @@
                 </div>
                 <div class="profile">
                     <img src="/public/images/profile_icon.svg" alt="profile_icon" class = "profile_icon">
-                    <button class="profile_button">Profile</button>
+                    <button onclick="location.href='profile'" class="profile_button">Profile</button>
                 </div>
                 <div class="settings">
                     <img src="/public/images/settings_icon.svg" alt="settings_icon" class = "settings_icon">

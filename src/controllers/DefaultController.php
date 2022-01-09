@@ -6,17 +6,17 @@ class DefaultController extends AppController {
 
     public function index()
     {
-        $this->render('home');
-    }
-
-    public function login()
-    {
         $this->render('login');
     }
 
     public function events()
     {
         $this->render('events');
+    }
+
+    public function event()
+    {
+        $this->render('event');
     }
 
     public function people()
