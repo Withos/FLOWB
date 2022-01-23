@@ -30,7 +30,7 @@ div{
 
 p, h1, h2{
     color: #a6a6a6;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro', serif;
     font-style: normal;
     font-weight: normal;
 
@@ -108,7 +108,7 @@ p, h1, h2{
     color: #a6a6a6;
     margin: 0;
     user-select: none;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro', serif;
     font-style: normal;
     font-weight: normal;
 }

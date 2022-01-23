@@ -68,7 +68,7 @@
 .content>div>div>h2{
     margin: 0;
     color:#bdbdc1;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro', serif;
     font-style: normal;
     font-weight: normal;
 }
@@ -76,7 +76,7 @@
 .content>div>div>p{
     margin: 0;
     color:#bdbdc1;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro', serif;
     font-style: normal;
     font-weight: normal;
 

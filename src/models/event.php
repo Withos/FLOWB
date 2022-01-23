@@ -6,7 +6,7 @@ class Event
     private string $title;
     private string $description;
     private string $date;
-    private  string $imageUrl;
+    private string $imageUrl;
 
     public function __construct(string $title,
                                 string $description,
@@ -16,6 +16,7 @@ class Event
         $this->title = $title;
         $this->description = $description;
         $this->date = $date;
+        $this->imageUrl = $imageUrl;
     }
 
     public function getTitle(): string
@@ -40,7 +41,7 @@ class Event
 
     public function getDate(): string
     {
-        return $this->like;
+        return $this->date;
     }
 
     public function setDate(string $date): void

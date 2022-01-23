@@ -90,7 +90,7 @@
     color: #a6a6a6;
     margin: 0;
     user-select: none;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro', serif;
     font-style: normal;
     font-weight: normal;
 }
@@ -124,7 +124,7 @@
     margin: 0;
     user-select: none;
     font-size: 1.2em;
-    font-family: 'Maven Pro';
+    font-family: 'Maven Pro', serif;
     font-style: normal;
     font-weight: normal;
 }

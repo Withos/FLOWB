@@ -2,18 +2,19 @@
 
 class User
 {
-    private $email;
-    private $password;
-    private $name;
-    private $surname;
-    private $date_of_birth;
+    private string $email;
+    private string $password;
+    private string $name;
+    private string $surname;
+    private string $date_of_birth;
 
-    public function __construct(string $email, string $password, string $name, string $surname)
+    public function __construct(string $email, string $password, string $name, string $surname, string $date_of_birth)
     {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
+        $this->date_of_birth = $date_of_birth;
     }
 
     public function getEmail(): string
@@ -57,7 +58,7 @@ class User
     }
 
 
-    public function getDateOfBirth()
+    public function getDateOfBirth(): string
     {
         return $this->date_of_birth;
     }
