@@ -14,4 +14,5 @@ Router::get('profile', 'DefaultController');
 Router::get('event', 'DefaultController');
 Router::post('login', 'SecurityController');
 Router::post('register', 'SecurityController');
+Router::post('addEvent', 'EventController');
 Router::run($path);

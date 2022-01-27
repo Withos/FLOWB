@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Events</title>
 </head>
 <body>
@@ -74,8 +73,8 @@
             </form>
         </div>
         <section class="content">
-            <div class="add_event">
-                <p class="add_event_text">Add Event ąęńżźć</p>
+            <div class="add_event" role="button" onclick="location.href='addEvent'">
+                <p class="add_event_text">Add Event</p>
                 <div id="add_event_plus_background">
                     <svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 60.364 60.364" xml:space="preserve">
@@ -86,68 +85,22 @@
                 </div>
             </div>
             <div class="event" id="event_1">
-                <img src="/public/pics/event1.jpg">
+                <img src="/public/uploads/<?= $project->getImage() ?>">
                 <div class="event_information">
-                    <p class="date">FRI, DEC 17 AT 8 PM</p>
+                    <p class="date"><?= $project->getDate() ?></p>
                     <h2>title</h2>
                     <p class="location">Gorlice Park</p>
-                    <p class="description">description</p>
+                    <p class="description"><?= $project->getDescription() ?></p>
                     <div class="interested" role="button">
                         <p class="interested_text">Interested</p>
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.875 2.625H6.125C5.1625 2.625 4.38375 3.4125 4.38375 4.375L4.375 18.375L10.5 15.75L16.625 18.375V4.375C16.625 3.4125 15.8375 2.625 14.875 2.625ZM14.875 15.75L10.5 13.8425L6.125 15.75V4.375H14.875V15.75Z" fill="#e6e6e6"/>
                         </svg>
+                    </div>
+                </div>
+            </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="event" id="event_2">
-                <img src="/public/pics/event1.jpg">
-                <div class="event_information">
-                    <p class="date">FRI, DEC 17 AT 8 PM</p>
-                    <h2>title</h2>
-                    <p class="location">Gorlice Park</p>
-                    <p class="description">description</p>
-                    <div class="interested" role="button">
-                        <p class="interested_text">Interested</p>
-                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.875 2.625H6.125C5.1625 2.625 4.38375 3.4125 4.38375 4.375L4.375 18.375L10.5 15.75L16.625 18.375V4.375C16.625 3.4125 15.8375 2.625 14.875 2.625ZM14.875 15.75L10.5 13.8425L6.125 15.75V4.375H14.875V15.75Z" fill="#e6e6e6"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="event" id="event_3">
-                <img src="/public/pics/event1.jpg">
-                <div class="event_information">
-                    <p class="date">FRI, DEC 17 AT 8 PM</p>
-                    <h2>title</h2>
-                    <p class="location">Gorlice Park</p>
-                    <p class="description">description</p>
-                    <div class="interested" role="button">
-                        <p class="interested_text">Interested</p>
-                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.875 2.625H6.125C5.1625 2.625 4.38375 3.4125 4.38375 4.375L4.375 18.375L10.5 15.75L16.625 18.375V4.375C16.625 3.4125 15.8375 2.625 14.875 2.625ZM14.875 15.75L10.5 13.8425L6.125 15.75V4.375H14.875V15.75Z" fill="#e6e6e6"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="event" id="event_4">
-                <img src="/public/pics/event1.jpg">
-                <div class="event_information">
-                    <p class="date">FRI, DEC 17 AT 8 PM</p>
-                    <h2>title</h2>
-                    <p class="location">Gorlice Park</p>
-                    <p class="description">description</p>
-                    <div class="interested" role="button">
-                        <p class="interested_text">Interested</p>
-                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.875 2.625H6.125C5.1625 2.625 4.38375 3.4125 4.38375 4.375L4.375 18.375L10.5 15.75L16.625 18.375V4.375C16.625 3.4125 15.8375 2.625 14.875 2.625ZM14.875 15.75L10.5 13.8425L6.125 15.75V4.375H14.875V15.75Z" fill="#e6e6e6"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
         </section>
-        
     </div>
 </body>
 </html>
