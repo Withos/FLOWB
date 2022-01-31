@@ -9,16 +9,6 @@ class DefaultController extends AppController {
         $this->render('login');
     }
 
-    public function events()
-    {
-        $this->render('events');
-    }
-
-    public function event()
-    {
-        $this->render('event');
-    }
-
     public function people()
     {
         $this->render('people');
@@ -32,11 +22,6 @@ class DefaultController extends AppController {
     public function home()
     {
         $this->render('home');
-    }
-
-    public function profile()
-    {
-        $this->render('profile');
     }
 
     public function register()

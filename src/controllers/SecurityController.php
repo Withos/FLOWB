@@ -37,8 +37,19 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Wrong password']]);
         }
 
+        session_start();
+        $_SESSION["useremail"] = $user->getEmail();
+        $_SESSION["userid"] = $user->getId();
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/home");
+    }
+
+    public function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
+
+        return $this->render('login', ['messages' => ["You've been logged out"]]);
     }
 
     public function register()
@@ -54,15 +65,32 @@ class SecurityController extends AppController
         $surname = $_POST['surname'];
         $date_of_birth = $_POST['date_of_birth'];
 
-        if ($password !== $confirmedPassword) {
+        if (empty($email)) {
+            return $this->render('register', ['messages' => ['Please provide proper email']]);
+        }
+
+        if (empty($name)) {
+            return $this->render('register', ['messages' => ['Please provide proper name']]);
+        }
+
+        if (empty($surname)) {
+            return $this->render('register', ['messages' => ['Please provide proper surname']]);
+        }
+
+        if ($password !== $confirmedPassword || empty($password)) {
             return $this->render('register', ['messages' => ['Please provide proper password']]);
         }
 
         //TODO try to use better hash function
-        $user = new User($email, md5($password), $name, $surname);
+        $user = new User($email, md5($password), $name, $surname, $date_of_birth);
         $user->setDateOfBirth($date_of_birth);
 
-        $this->userRepository->addUser($user);
+        try {
+            $this->userRepository->addUser($user);
+        }
+        catch(PDOException $pdoe){
+            return $this->render('register', ['messages' => ['Account with this email already exists']]);
+        }
 
         return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
     }

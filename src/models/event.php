@@ -1,5 +1,6 @@
 <?php
 
+require_once ('Location.php');
 
 class Event
 {
@@ -7,16 +8,21 @@ class Event
     private string $description;
     private string $date;
     private string $image;
+    private Location $location;
+    private int $id;
 
     public function __construct(string $title,
                                 string $description,
                                 string $date,
+                                Location $location,
                                 string $image = 'event1.jpg')
     {
         $this->title = $title;
         $this->description = $description;
         $this->date = $date;
         $this->image = $image;
+        $this->location = $location;
+
     }
 
     public function getTitle(): string
@@ -58,4 +64,28 @@ class Event
     {
         $this->image = $image;
     }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(Location $location): void
+    {
+        $this->location = $location;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+
+
+
 }

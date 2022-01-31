@@ -1,0 +1,24 @@
+.events_button, .videos_button, .people_button, .chats_button, .profile_button, .settings_button{
+    border: 2px solid #11121F;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 147px;
+    font-size: 150%;
+    height: 50%;
+    width: 75%;
+    transition-duration: 0.4s;
+}
+
+.events_button,.videos_button:hover, .people_button:hover  {
+    background-color: black;
+    color: #7e38b6;
+}
+
+.chats_button:hover {
+    background-color: black;
+    color: #8c35b6;
+}
+.profile_button:hover, .settings_button:hover {
+    background-color: black;
+    color: #a52eb8;
+}

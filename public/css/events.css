@@ -63,11 +63,14 @@
 
 .add_event_text{
     font-size: 2.3em;
-    /*font-family: 'Maven Pro', serif;*/
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Maven Pro', serif;
     color: #bdbdc1;
     user-select: none;
     margin: 0;
+}
+
+.events{
+    display: contents;
 }
 
 .event{
@@ -102,6 +105,13 @@
     row-gap: 5%;
 }
 
+.description{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .event>div>h2{
     margin: 0;
     color:#bdbdc1;
@@ -123,7 +133,7 @@
 .interested{
     justify-self: flex-end;
     align-self: center;
-    background-color: #62636a;
+    background-color: #e6e6e6;
     width: 55%;
     height: 2.2em;
     display: flex;
@@ -140,19 +150,60 @@
     width: 1.2em;
 }
 
+.interested svg path{
+    fill:  #62636a;
+}
+
 .interested:hover{
+    background-color: #62636a;
+}
+.interested>p{
+    color: #62636a;
+    margin: 0;
+    user-select: none;
+    font-family: 'Maven Pro', serif;
+}
+.interested:hover p{
+    color: #e6e6e6;
+}
+.interested:hover svg path{
+    fill: #e6e6e6;
+}
+
+.uninterested{
+    justify-self: flex-end;
+    align-self: center;
+    background-color: #62636a;
+    width: 55%;
+    height: 2.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4%;
+    border-radius: 0.6em;
+    margin-top:auto;
+    transition-duration: 0.4s;
+}
+
+.uninterested svg{
+    height: 1.2em;
+    width: 1.2em;
+    fill: #e6e6e6;
+}
+
+.uninterested:hover{
     background-color: #e6e6e6;
 }
-.interested_text{
+.uninterested>p{
     color: #e6e6e6;
     margin: 0;
     user-select: none;
     font-family: 'Maven Pro', serif;
 }
-.interested:hover .interested_text{
+.uninterested:hover p{
     color: #62636a;
 }
-.interested:hover svg path{
+.uninterested:hover svg path{
     fill: #62636a;
 }
 

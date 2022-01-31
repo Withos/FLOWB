@@ -2,6 +2,7 @@
 
 require_once 'Repository.php';
 require_once __DIR__.'/../models/Event.php';
+require_once __DIR__ .'/../models/Location.php';
 
 class EventRepository extends Repository
 {
@@ -9,7 +10,8 @@ class EventRepository extends Repository
     public function getEvent(int $id): ?Event
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.Events WHERE id = :id
+            SELECT * FROM public."Events" join "Locations" on "Events"."event_locationID" = "Locations"."locationID"
+            WHERE "eventID" = :id
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -20,12 +22,22 @@ class EventRepository extends Repository
             return null;
         }
 
-        return new Event(
+        $location = new Location(
+            $event['event_locationID'],
+            $event['location_name']
+        );
+
+        $event = new Event(
             $event['event_name'],
             $event['description'],
             $event['event_date'],
+            $location,
             $event['event_picture']
         );
+
+        $event->setId($id);
+
+        return $event;
     }
 
     public function addEvent(Event $event): void
@@ -37,8 +49,8 @@ class EventRepository extends Repository
         ');
 
         //TODO you should get this value from logged user session
-        $assignedById = 3;
-        $locationId = 1;
+        session_start();
+        $assignedById = $_SESSION["userid"];
 
         $stmt->execute([
             $event->getTitle(),
@@ -46,8 +58,89 @@ class EventRepository extends Repository
             $event->getDescription(),
             $event->getImage(),
             $assignedById,
-            $locationId,
+            $event->getLocation()->getId(),
             $date->format('Y-m-d')
         ]);
+    }
+
+    public function getEvents(): array{
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+        SELECT * FROM "Events" join "Locations" on "Events"."event_locationID" = "Locations"."locationID"
+        ');
+        $stmt->execute();
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($events as $event){
+            $location = new Location(
+                $event['event_locationID'],
+                $event['location_name']
+            );
+            $result[] = new Event(
+                $event['event_name'],
+                $event['description'],
+                $event['event_date'],
+                $location,
+                $event['event_picture']
+            );
+            end($result)->setId($event["eventID"]);
+        }
+        return $result;
+    }
+
+    public function getEventByTitle(string $searchString){
+        $searchString = '%'.strtolower($searchString).'%';
+        session_start();
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM "Events" join "Locations" on "Events"."event_locationID" = "Locations"."locationID"
+            left outer join "User_Interested_Events" on "Events"."eventID" = "User_Interested_Events"."interested_eventID"
+            WHERE (LOWER(event_name) LIKE :search OR LOWER(description) LIKE :search) AND 
+                  ("interested_userID" = :id OR "interested_userID" is NULL)
+        ');
+        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function interested(int $eventId){
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO "User_Interested_Events" ("interested_userID", "interested_eventID")
+            VALUES (?, ?)
+        ');
+        session_start();
+        var_dump($eventId);
+        $userid = $_SESSION["userid"];
+        $stmt->execute([
+            $userid,
+            $eventId
+        ]);
+    }
+
+    public function uninterested(int $eventId){
+        session_start();
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM "User_Interested_Events" WHERE "interested_userID" = ? and "interested_eventID" = ?
+        ');
+        $stmt->execute([
+            $_SESSION["userid"],
+            $eventId
+        ]);
+    }
+
+    public function getInterestedEvents(){
+        session_start();
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT "interested_eventID" FROM "User_Interested_Events" 
+            WHERE "interested_userID" = :id 
+        ');
+        $stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

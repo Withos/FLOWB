@@ -2,7 +2,9 @@
 
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/Event.php';
+require_once __DIR__ .'/../models/Location.php';
 require_once __DIR__.'/../repository/EventRepository.php';
+require_once __DIR__.'/../repository/LocationRepository.php';
 
 class EventController extends AppController {
 
@@ -12,11 +14,13 @@ class EventController extends AppController {
 
     private $message = [];
     private $eventRepository;
+    private $locationRepository;
 
     public function __construct()
     {
         parent::__construct();
         $this->eventRepository = new EventRepository();
+        $this->locationRepository = new LocationRepository();
     }
 
     public function addEvent()
@@ -28,12 +32,56 @@ class EventController extends AppController {
             );
 
             // TODO create new project object and save it in database
-            $event = new Event($_POST['title'], $_POST['description'], $_POST['date'], $_FILES['file']['name']);
+            $event = new Event($_POST['title'], $_POST['description'], $_POST['date'], unserialize($_POST['location']), $_FILES['file']['name']);
             $this->eventRepository->addEvent($event);
 
-            return $this->render('events', ['messages' => $this->message]);
+            return $this->render('events', [
+                'events' => $this->eventRepository->getEvents(),
+                'messages' => $this->message]);
         }
-        return $this->render('add_event', ['messages' => $this->message]);
+        return $this->render('add_event', ['messages' => $this->message, 'locations' => $this->locationRepository->getLocations()]);
+    }
+
+    public function events()
+    {
+        $events = $this->eventRepository->getEvents();
+        $interested_events = $this->eventRepository->getInterestedEvents();
+        $this->render('events', ['events' => $events, 'interested' => $interested_events]);
+    }
+
+    public function home()
+    {
+        $events = $this->eventRepository->getEvents();
+        $this->render('home', ['events' => $events]);
+    }
+
+    public function event(){
+        $event = $this->eventRepository->getEvent($_GET['id']);
+        $this->render('event', ['event' => $event]);
+    }
+
+    public function search(){
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json"){
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            echo json_encode($this->eventRepository->getEventByTitle($decoded['search']));
+        }
+    }
+
+    public function interested(){
+        $id = intval($_POST['id']);
+        $this->eventRepository->interested($id);
+    }
+
+    public function uninterested(){
+        $id = intval($_POST['id']);
+        $this->eventRepository->uninterested($id);
     }
 
     private function validate(array $file): bool
@@ -49,4 +97,5 @@ class EventController extends AppController {
         }
         return true;
     }
+
 }

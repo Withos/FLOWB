@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION["useremail"]) && isset($_SESSIOM["userid"])){
+    header("location: ../home");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
