@@ -20,4 +20,5 @@ Router::post("interested", 'EventController');
 Router::post("uninterested", 'EventController');
 Router::post("logOut", 'SecurityController');
 Router::post("editProfile", 'UserController');
+Router::post("deleteEvent", 'EventController');
 Router::run($path);

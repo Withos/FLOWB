@@ -48,3 +48,9 @@ form{
     box-shadow: 0 0 3px red !important;
     outline: none !important;
 }
+
+@media only screen and (max-aspect-ratio: 5 / 6) {
+    .loginform {
+        grid-template-rows: 10% 90%;
+    }
+}

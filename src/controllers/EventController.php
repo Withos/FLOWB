@@ -85,6 +85,15 @@ class EventController extends AppController {
         $this->eventRepository->uninterested($id);
     }
 
+    public function deleteEvent(){
+        $id = intval($_POST['id']);
+        $this->eventRepository->deleteEvent($id);
+        $interested_events = $this->eventRepository->getInterestedEvents();
+        return $this->render('events', [
+            'events' => $this->eventRepository->getEvents(),
+            'messages' => $this->message, 'interested' => $interested_events]);
+    }
+
     private function validate(array $file): bool
     {
         if ($file['size'] > self::MAX_FILE_SIZE) {

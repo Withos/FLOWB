@@ -27,7 +27,7 @@ class EventRepository extends Repository
             $event['location_name']
         );
 
-        $event = new Event(
+        $eventnew = new Event(
             $event['event_name'],
             $event['description'],
             $event['event_date'],
@@ -35,9 +35,10 @@ class EventRepository extends Repository
             $event['event_picture']
         );
 
-        $event->setId($id);
+        $eventnew->setId($id);
+        $eventnew->setCreatorId($event["creatorID"]);
 
-        return $event;
+        return $eventnew;
     }
 
     public function addEvent(Event $event): void
@@ -85,22 +86,24 @@ class EventRepository extends Repository
                 $event['event_picture']
             );
             end($result)->setId($event["eventID"]);
+            end($result)->setCreatorId($event["creatorID"]);
         }
         return $result;
     }
 
     public function getEventByTitle(string $searchString){
         $searchString = '%'.strtolower($searchString).'%';
+
         session_start();
 
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM "Events" join "Locations" on "Events"."event_locationID" = "Locations"."locationID"
             left outer join "User_Interested_Events" on "Events"."eventID" = "User_Interested_Events"."interested_eventID"
-            WHERE (LOWER(event_name) LIKE :search OR LOWER(description) LIKE :search) AND 
-                  ("interested_userID" = :id OR "interested_userID" is NULL)
+            WHERE (LOWER(event_name) LIKE :search OR LOWER(description) LIKE :search)/* AND 
+                  ("interested_userID" = :id OR "interested_userID" is NULL)*/ order by created_at desc
         ');
         $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
+        //$stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -142,5 +145,14 @@ class EventRepository extends Repository
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteEvent(int $eventId){
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM "Events" WHERE "Events"."eventID" = :id
+        ');
+
+        $stmt->bindParam(':id', $eventId, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

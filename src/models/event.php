@@ -10,6 +10,7 @@ class Event
     private string $image;
     private Location $location;
     private int $id;
+    private int $creatorId;
 
     public function __construct(string $title,
                                 string $description,
@@ -83,6 +84,16 @@ class Event
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    public function getCreatorId(): int
+    {
+        return $this->creatorId;
+    }
+
+    public function setCreatorId(int $creatorId): void
+    {
+        $this->creatorId = $creatorId;
     }
 
 

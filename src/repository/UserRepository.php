@@ -42,7 +42,9 @@ class UserRepository extends Repository
         $tags = [];
 
         foreach($userdata as $data ){
+            if($data["tagID"] != null){
             $tags[] = new Tag($data["tagID"], $data["tag_name"]);
+            }
         }
 
         $user->setTags($tags);
