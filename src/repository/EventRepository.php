@@ -67,7 +67,7 @@ class EventRepository extends Repository
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-        SELECT * FROM "Events" join "Locations" on "Events"."event_locationID" = "Locations"."locationID"
+        SELECT * FROM "Events" join "Locations" on "Events"."event_locationID" = "Locations"."locationID" order by created_at desc
         ');
         $stmt->execute();
         $events = $stmt->fetchAll(PDO::FETCH_ASSOC);

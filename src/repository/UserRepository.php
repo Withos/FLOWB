@@ -134,13 +134,17 @@ class UserRepository extends Repository
         $result = [];
         $currentid = 0;
 
+        session_start();
+
         $stmt = $this->database->connect()->prepare('
         SELECT "Users"."userID", email, password, name, surname, date_of_birth, "user_locationID", 
                location_name, profile_picture, bio, T."tagID", tag_name 
             FROM public."Users" join "Locations" L on "Users"."user_locationID" = L."locationID" 
             left outer join "User_Tags" UT on "Users"."userID" = UT."userID" 
-            left outer join "Tags" T on T."tagID" = UT."tagID" order by "Users"."userID"
+            left outer join "Tags" T on T."tagID" = UT."tagID" where "Users"."userID" != :id order by "Users"."userID"
         ');
+
+        $stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -176,5 +180,47 @@ class UserRepository extends Repository
 
         return $result;
 
+    }
+
+    public function getUsersByName(string $searchString){
+        $searchString = '%'.strtolower($searchString).'%';
+        session_start();
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT "Users"."userID", email, password, name, surname, date_of_birth, "user_locationID", 
+               location_name, profile_picture, bio, T."tagID", tag_name 
+            FROM public."Users" join "Locations" L on "Users"."user_locationID" = L."locationID" 
+            left outer join "User_Tags" UT on "Users"."userID" = UT."userID" 
+            left outer join "Tags" T on T."tagID" = UT."tagID" 
+            where "Users"."userID" != :id order by "Users"."userID" 
+            AND (LOWER(name) LIKE :search OR LOWER(surname) LIKE :search)
+        ');
+        $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function editUser(User $edituser){
+
+        session_start();
+
+        $name = $edituser->getName();
+        $surname = $edituser->getSurname();
+        $locationId = $edituser->getLocation()->getId();
+        $image = $edituser->getImage();
+
+        $stmt = $this->database->connect()->prepare('
+            UPDATE "Users" SET name = :name, surname = :surname, "user_locationID" = :locid, 
+                               profile_picture = :pfp WHERE "userID" = :id
+        ');
+
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
+        $stmt->bindParam(':locid', $locationId, PDO::PARAM_STR);
+        $stmt->bindParam(':pfp', $image, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $_SESSION['userid'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

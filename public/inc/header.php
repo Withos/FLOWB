@@ -5,12 +5,26 @@
     <link rel= "stylesheet" type="text/css" href = "/public/css/style.css">
     <link rel= "stylesheet" type="text/css" href = "/public/css/<?=$currentpage?>.css">
     <?php
-        if($currentpage === "events" || $currentpage === "home"){
+        if($currentpage === "events"){
     ?>
     <script type="text/javascript" defer src="/public/js/search.js"></script>
             <script type="text/javascript" defer src="/public/js/interested.js"></script>
     <?php
         }
+    ?>
+    <?php
+    if($currentpage === "home"){
+        ?>
+        <script type="text/javascript" src="/public/js/home.js"></script>
+        <?php
+    }
+    ?>
+    <?php
+    if($currentpage === "profile"){
+        ?>
+        <script type="text/javascript" defer src="/public/js/edit_profile.js"></script>
+        <?php
+    }
     ?>
     <script type="text/javascript" defer src="/public/js/log_out.js"></script>
     <meta charset="UTF-8">

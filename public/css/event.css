@@ -22,3 +22,8 @@
     background-color: black;
     color: #a52eb8;
 }
+
+
+.content img{
+    max-height: 40vh;
+}

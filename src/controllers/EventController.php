@@ -34,10 +34,11 @@ class EventController extends AppController {
             // TODO create new project object and save it in database
             $event = new Event($_POST['title'], $_POST['description'], $_POST['date'], unserialize($_POST['location']), $_FILES['file']['name']);
             $this->eventRepository->addEvent($event);
+            $interested_events = $this->eventRepository->getInterestedEvents();
 
             return $this->render('events', [
                 'events' => $this->eventRepository->getEvents(),
-                'messages' => $this->message]);
+                'messages' => $this->message, 'interested' => $interested_events]);
         }
         return $this->render('add_event', ['messages' => $this->message, 'locations' => $this->locationRepository->getLocations()]);
     }
