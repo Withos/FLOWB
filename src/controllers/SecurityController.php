@@ -44,7 +44,7 @@ class SecurityController extends AppController
         header("Location: {$url}/home");
     }
 
-    public function logout(){
+    public function logOut(){
         session_start();
         session_unset();
         session_destroy();

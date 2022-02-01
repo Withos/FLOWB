@@ -18,4 +18,5 @@ Router::post('addEvent', 'EventController');
 Router::post("search", 'EventController');
 Router::post("interested", 'EventController');
 Router::post("uninterested", 'EventController');
+Router::post("logOut", 'SecurityController');
 Router::run($path);
